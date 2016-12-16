@@ -6,11 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from .fields import HexIntegerField
 from .settings import PUSH_NOTIFICATIONS_SETTINGS as SETTINGS
 
-try:
-	from django.db.models import UUIDField
-except:
-	from uuidfield import UUIDField
-
 
 CLOUD_MESSAGE_TYPES = (
 	("GCM", "Google Cloud Message"),
@@ -138,7 +133,7 @@ class APNSDeviceQuerySet(models.query.QuerySet):
 
 
 class APNSDevice(Device):
-	device_id = UUIDField(
+	device_id = models.UUIDField(
 		verbose_name=_("Device ID"), blank=True, null=True, db_index=True,
 		help_text="UDID / UIDevice.identifierForVendor()"
 	)
@@ -185,7 +180,7 @@ class WNSDeviceQuerySet(models.query.QuerySet):
 
 
 class WNSDevice(Device):
-	device_id = UUIDField(
+	device_id = models.UUIDField(
 		verbose_name=_("Device ID"), blank=True, null=True, db_index=True,
 		help_text=_("GUID()")
 	)
