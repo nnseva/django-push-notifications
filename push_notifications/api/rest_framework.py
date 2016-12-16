@@ -116,6 +116,12 @@ class GCMDeviceSerializer(UniqueRegistrationSerializerMixin, ModelSerializer):
 
 
 class WNSDeviceSerializer(UniqueRegistrationSerializerMixin, ModelSerializer):
+	device_id = UUIDField(
+		help_text="GUID()",
+		style={'input_type': 'text'},
+		required=False
+	)
+
 	class Meta(DeviceSerializerMixin.Meta):
 		model = WNSDevice
 
